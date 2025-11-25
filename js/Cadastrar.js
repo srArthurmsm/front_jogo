@@ -25,7 +25,7 @@ formCadastro.addEventListener('submit', (e) => {
     for (let [key, value] of formData.entries()) {
       console.log(key, value)
     }
-    fetch('http://localhost:3000/cliente', {
+    fetch('http://backjogo-production.up.railway.app/cliente', {
       method: 'POST',
       body: formData
     })
