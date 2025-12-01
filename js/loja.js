@@ -72,5 +72,5 @@ const criar = document.getElementById('criar')
 
 
 criar.addEventListener('click',(e)=>{
-    window.location.href = './criarJogo.html.'
+    window.location.href = './criarJogo.html'
 })
