@@ -21,7 +21,7 @@ const tabela = document.getElementById('tabela')
 
 
 function listar(){
-    fetch('http://localhost:3000/jogo')
+    fetch('https://backjogo-production.up.railway.app/jogo')
     .then(resp => resp.json())
     .then((dados)=>{
         dados.forEach(produto => {
