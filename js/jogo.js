@@ -14,7 +14,7 @@ const payload = JSON.parse(atob(token.split('.')[1]));
 
 function getThings(){
     console.log("payload.imagem =", payload.imagem);
-    fetch(`http://localhost:3000/jogo/${id}`)
+    fetch(`https://backjogo-production.up.railway.app/jogo/${id}`)
     .then(resp => resp.json())
     .then((dados)=>{
         console.log(dados.descricao, dados.nomeJogo )
@@ -27,8 +27,8 @@ function getThings(){
     .catch((err)=>{
         console.log(err)
     })
-    perfil_review.src = "http://localhost:3000" + payload.imagem
-    fetch(`http://localhost:3000/review`,{
+    perfil_review.src = "https://backjogo-production.up.railway.app" + payload.imagem
+    fetch(`https://backjogo-production.up.railway.app/review`,{
         headers: {
             "Authorization": "Bearer " + token
         }
@@ -43,7 +43,7 @@ function getThings(){
     
             card.innerHTML = `
                 <div class="review-user">
-                    <img class="review-avatar" src="http://localhost:3000${review.cliente.imagem}">
+                    <img class="review-avatar" src="https://backjogo-production.up.railway.app${review.cliente.imagem}">
                     <div>
                         <h3 class="review-name">${review.cliente.nome}</h3>
                         <p class="review-date">${new Date(review.createdAt).toLocaleDateString()}</p>
@@ -77,7 +77,7 @@ comprar.addEventListener('click',(e)=>{
         valorTotal : precoCompra
     }
 
-    fetch('http://localhost:3000/compra',{
+    fetch('https://backjogo-production.up.railway.app/compra',{
         method: 'POST',
         body: JSON.stringify(valores),
         headers: {
@@ -108,7 +108,7 @@ enviar.addEventListener('click',(e)=>{
         idJogo: id,
         Conteudo: document.getElementById('review_nota').value
     }
-    fetch('http://localhost:3000/review',{
+    fetch('https://backjogo-production.up.railway.app/review',{
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
