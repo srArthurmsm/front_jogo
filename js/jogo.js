@@ -1,3 +1,13 @@
+const cad = document.getElementById('cad')
+const Login = document.getElementById('Login')
+
+cad.addEventListener('click',(e)=>{
+    window.location.href = "./cadastrar.html"
+})
+
+Login.addEventListener('click',(e)=>{
+    window.location.href = "./Login.html"
+})
 
 const imagem = document.getElementById('capa')
 const preco = document.getElementById('preco')
@@ -10,7 +20,27 @@ const id = params.get("id");
 
 const tabela = document.getElementById('reviews_tabela')
 
-const payload = JSON.parse(atob(token.split('.')[1]));
+
+const user = document.getElementById('user')
+const payload = JSON.parse(atob(token.split('.')[1]))
+if(localStorage.getItem('token')){
+    console.log('esta logado')
+    user.innerHTML = ""
+    const userButton = document.createElement('button')
+    userButton.classList.add('userPage')
+    const imagem = document.createElement('img')
+    imagem.classList.add('userImagem')
+    imagem.src = `https://backjogo-production.up.railway.app{payload.imagem}`
+    const username = document.createElement('div')
+    username.innerHTML = payload.nome
+    userButton.appendChild(imagem)
+    userButton.appendChild(username)
+    user.appendChild(userButton)
+    userButton.addEventListener('click',(e)=>{
+        window.location.href = "./Perfil.html"
+    })
+}
+
 
 function getThings(){
     console.log("payload.imagem =", payload.imagem);
@@ -22,7 +52,7 @@ function getThings(){
         precoCompra = dados.preco
         desc.innerHTML = dados.descricao
         nome.innerHTML = dados.nomeJogo
-        imagem.src = dados.capa
+        imagem.src = `https://backjogo-production.up.railway.app{dados.capa}`
     })
     .catch((err)=>{
         console.log(err)
@@ -36,14 +66,14 @@ function getThings(){
     .then(resp => resp.json())
     .then((dados)=>{
         console.log(dados)
-        dados.forEach((review) => {
+        dados.filter(review => review.idJogo == id).forEach((review) => {
 
             const card = document.createElement("div")
             card.classList.add("review-card")
     
             card.innerHTML = `
                 <div class="review-user">
-                    <img class="review-avatar" src="https://backjogo-production.up.railway.app${review.cliente.imagem}">
+                    <img class="review-avatar" src="https://backjogo-production.up.railway.app{review.cliente.imagem}">
                     <div>
                         <h3 class="review-name">${review.cliente.nome}</h3>
                         <p class="review-date">${new Date(review.createdAt).toLocaleDateString()}</p>
@@ -54,7 +84,6 @@ function getThings(){
                     <p>${review.Conteudo}</p>
                 </div>
             `
-            
             tabela.appendChild(card)
         })
     })
@@ -67,7 +96,7 @@ const comprar = document.getElementById('comprar')
 const carrinho = document.getElementById('carrinho')
 
 comprar.addEventListener('click',(e)=>{
-    alert("voce quer continuuar com a compra?")
+    alert("voce quer continuar com a compra?")
     e.preventDefault()
 
     valores = {
@@ -93,6 +122,11 @@ comprar.addEventListener('click',(e)=>{
     })
 })
 
+
+carrinho.addEventListener('click',(e)=>{
+
+    adicionarProduto()
+})
 
 
 
@@ -124,4 +158,26 @@ enviar.addEventListener('click',(e)=>{
     })
 })
 
+
+let produtos = JSON.parse(localStorage.getItem('produtos')) || []
+
+
+function adicionarProduto() {
+    fetch(`https://backjogo-production.up.railway.app/jogo/${id}`)
+        .then(resp => resp.json())
+        .then((dados) => {
+            const precoCompra = dados.preco;
+            const nome = dados.nomeJogo;
+
+            const produto = { nome, precoCompra, id };
+            produtos.push(produto);
+
+            localStorage.setItem('produtos', JSON.stringify(produtos));
+
+            alert(`${qtde}x ${nome} adicionado(s) ao carrinho!`);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
 window.onload = getThings

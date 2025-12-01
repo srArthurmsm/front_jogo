@@ -1,5 +1,6 @@
 const cad = document.getElementById('cad')
 const Login = document.getElementById('Login')
+const token = localStorage.getItem('token')
 
 cad.addEventListener('click',(e)=>{
     window.location.href = "./cadastrar.html"
@@ -12,8 +13,28 @@ Login.addEventListener('click',(e)=>{
 
 
 const formCadastro = document.getElementById('formCadastro')
+
 const res = document.getElementById('res')
 
+const user = document.getElementById('user')
+const payload = JSON.parse(atob(token.split('.')[1]))
+if(token){
+    console.log('esta logado')
+    user.innerHTML = ""
+    const userButton = document.createElement('button')
+    userButton.classList.add('userPage')
+    const imagem = document.createElement('img')
+    imagem.classList.add('userImagem')
+    imagem.src = `https://backjogo-production.up.railway.app{payload.imagem}`
+    const username = document.createElement('div')
+    username.innerHTML = payload.nome
+    userButton.appendChild(imagem)
+    userButton.appendChild(username)
+    user.appendChild(userButton)
+    userButton.addEventListener('click',(e)=>{
+        window.location.href = "./Perfil.html"
+    })
+}
 
 
 formCadastro.addEventListener('submit', (e) => {

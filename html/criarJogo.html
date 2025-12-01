@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/CadastrarJogo.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="./loja.html">Loja</a>
+            <a href="./carrinho.html">Carrinho</a>
+            <div id="user">
+                <button id="cad">Cadastrar</button>
+                <button id="Login">Login</button>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div id="box">
+            <section>
+                <h2>Cadastrar</h2><br>
+              
+                <form id="formCadastro" action="http://localhost:3000/jogo" method="POST" enctype="multipart/form-data">
+                  <label for="nomeJogo">Nome:</label><br>
+                  <input type="text" id="nomeJogo" name="nomeJogo" required><br>
+
+                  <label for="genero">Genero:</label><br>
+                  <select name="genero" id="genero">
+                  </select><br>
+                  <button id="addGenero">Adicionar Genero</button>
+                  <label for="preco">preco:</label><br>
+                  <input type="text" id="preco" name="preco" required><br>
+              
+                  <label for="descricao">descricao:</label><br>
+                  <input type="text" id="descricao" name="descricao" required><br>
+
+                  <label for="requisitosMinimos">requisitos Minimos:</label><br>
+                  <input type="text" id="requisitosMinimos" name="requisitosMinimos" required><br><br>
+
+                  <label for="requisitosRecomendados">requisitos Recomendados:</label><br>
+                  <input type="text" id="requisitosRecomendados" name="requisitosRecomendados" required><br><br>
+              
+                  <label for="capa">Capa</label>
+                  <input type="file" id="capa" name="capa"><br><br>
+              
+                  <button type="submit" id="Cadastrar">Cadastrar</button>
+                </form>
+              
+                <div id="res"></div>
+              </section>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>

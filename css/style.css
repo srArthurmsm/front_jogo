@@ -299,6 +299,17 @@ select option {
     object-fit: cover;
 }
 
+#criar{
+    background: #5c7e10;
+    color: #fff;
+    transition: 0.2s;
+}
+
+#criar:disabled{
+    background-color: #52585e;
+}
+
+
 footer {
     position: fixed;
     bottom: 0;
@@ -320,3 +331,195 @@ main {
     padding-bottom: 120px;
     flex: 1;
 }
+
+#user .userPage {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px 12px;
+
+    /* Deixar bonito */
+    color: #c7d5e0;
+    font-size: 16px;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+#user .userPage:hover {
+    background: #2a475e;
+}
+
+#user .userImagem {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #66c0f4;
+}
+
+#user .userPage div {
+    font-weight: bold;
+    color: #c7d5e0;
+    text-shadow: 0 0 5px #000;
+}
+
+/* =======================
+   PERFIL DO USUÁRIO
+======================= */
+
+/* Container do perfil */
+#box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background: #1b2838;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #000;
+}
+
+/* Caixa interna do perfil */
+#box > div {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Imagem principal do usuário */
+#UserImagemPrincipal {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #66c0f4;
+    box-shadow: 0 0 20px #000;
+}
+
+/* Nome do usuário */
+#userName {
+    font-size: 28px;
+    font-weight: bold;
+    color: #c7d5e0;
+    text-shadow: 0 0 8px #000;
+}
+
+/* Data do usuário */
+#userDate {
+    font-size: 16px;
+    color: #9aa7b3;
+}
+
+/* Botão logout */
+#logOut {
+    background: #d9534f;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+    width: 140px;
+}
+
+#logOut:hover {
+    background: #c9302c;
+}
+
+/* =======================
+   BIBLIOTECA DE JOGOS
+======================= */
+
+#biblioteca_table {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+    border: none;
+}
+
+#biblioteca_table thead,
+#biblioteca_table tbody,
+#biblioteca_table tr {
+    display: contents;
+}
+
+#biblioteca_table tr {
+    background: #1b2838;
+    border-radius: 10px;
+    padding: 0;
+    margin: 0;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+#biblioteca_table tr:hover {
+    background: #2a475e;
+    border-color: #66c0f4;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* Capa do jogo - maior */
+#biblioteca_table img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0;
+}
+
+#biblioteca_table tr:hover img {
+    transform: scale(1.05);
+}
+
+/* Células da tabela */
+#biblioteca_table td {
+    padding: 15px;
+    color: #c7d5e0;
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+}
+
+/* Ajuste para quando tem múltiplos tds */
+#biblioteca_table tr td:first-child {
+    padding: 0;
+}
+
+#biblioteca_table tr td:not(:first-child) {
+    padding: 15px;
+    border-top: 1px solid #2a475e;
+}
+
+/* =======================
+   PERFIL — ESTILIZAÇÃO EXTRA
+======================= */
+
+/* Caixa geral */
+main {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Efeito de fade geral */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+

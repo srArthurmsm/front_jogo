@@ -1,6 +1,7 @@
 const cad = document.getElementById('cad')
 const Login = document.getElementById('Login')
 
+
 cad.addEventListener('click',(e)=>{
     window.location.href = "./cadastrar.html"
 })
@@ -9,6 +10,7 @@ Login.addEventListener('click',(e)=>{
     window.location.href = "./Login.html"
 })
 
+const user = document.getElementById('user')
 
 
 const Loginbtn = document.getElementById('Loginbtn')
