@@ -1,50 +1,70 @@
-<!DOCTYPE html> <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="UTF-8"> 
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/steam.css">
 <script src="../js/jogo.js" defer></script>
-<title>Document</title>
+<title>Jogo</title>
 </head>
 <body>
+
 <header>
-  <nav>
-    <a href="../index.html">Home</a>
-    <a href="./loja.html">Loja</a>
-    <a href="./carrinho.html">Carrinho</a>
-    <div id="user">
-      <button id="cad">Cadastrar</button>
-      <button id="Login">Login</button>
+  <nav class="nav-container">
+    <div class="nav-left">
+      <a href="../index.html">Home</a>
+      <a href="./loja.html">Loja</a>
+      <a href="./carrinho.html">Carrinho</a>
+    </div>
+
+    <div id="user" class="nav-right">
+      <button id="cad" class="steam-btn-blue">Cadastrar</button>
+      <button id="Login" class="steam-btn-blue">Login</button>
     </div>
   </nav>
 </header>
+
 <main>
-  <div id="box">
-    <img src="" alt="" id="capa">
-    <div id="nome"></div>
-    <div id="desc"></div>
-    <div id="preco"></div>
 
-    <tr>
-      <button id="comprar">Comprar</button>
-      <button id="carrinho">adicionar no carrinho</button>
-    </tr>
-  </div><br><br>
-  <div id="review">
-    <div id="add">
-      <img src="" alt="" id="perfil_review">
-      <input type="text" id="review_nota">
-      <button id="enviar">Enviar</button>
+  <!-- CONTAINER DO JOGO -->
+  <section id="game-page">
+    <div class="game-header">
+      <img src="" id="capa" alt="Capa do jogo">
+
+      <div class="game-info">
+        <h1 id="nome"></h1>
+        <p id="desc"></p>
+
+        <div id="preco" class="game-price"></div>
+
+        <div class="game-buttons">
+          <button id="comprar" class="steam-btn-green">Comprar</button>
+          <button id="carrinho" class="steam-btn-dark">Adicionar ao carrinho</button>
+        </div>
+      </div>
     </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="review">
+    <h2 class="section-title">Reviews</h2>
+
+    <div id="add" class="review-add">
+      <img src="" id="perfil_review" alt="">
+      <input type="text" id="review_nota" placeholder="Escreva sua review...">
+      <button id="enviar" class="steam-btn-green">Enviar</button>
+    </div>
+
     <table>
-      <tbody id="reviews_tabela">
-
-      </tbody>
+      <tbody id="reviews_tabela"></tbody>
     </table>
-  </div>
-</main>
-<footer>
+  </section>
 
+</main>
+
+<footer>
+  © 2025 — Steam Clone
 </footer>
+
 </body>
 </html>
