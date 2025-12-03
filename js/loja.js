@@ -80,3 +80,9 @@ const criar = document.getElementById('criar')
 criar.addEventListener('click',(e)=>{
     window.location.href = './criarJogo.html'
 })
+
+
+const btnsearch = document.getElementById('btnsearch')
+
+
+btnsearch.addEventListener('click')

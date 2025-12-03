@@ -55,6 +55,7 @@ function opGenero(){
       const opcao = document.createElement('option')
       opcao.value = genero.codGenero;
       opcao.textContent = genero.nomeGenero;
+      console.log(genero)
       select.appendChild(opcao)
     });
   })
