@@ -85,36 +85,36 @@ criar.addEventListener('click',(e)=>{
 const btnsearch = document.getElementById('btnsearch');
 
 btnsearch.addEventListener('click', (e) => {
-    e.preventDefault(); // previne envio de formulário se houver
-
-    const search = document.getElementById('search').value.toLowerCase();
-    const categoria = document.getElementById('categoria').value.toLowerCase();
-
-    // Limpa tabela antes de adicionar resultados
-    tabela.innerHTML = '';
-
+    e.preventDefault();
+    const originalText = btnsearch.textContent;
+    btnsearch.textContent = 'Buscando...';
+    btnsearch.disabled = true;
+    
+    const search = searchInput.value.toLowerCase().trim();
+    const categoria = categoriaSelect.value.toLowerCase();
+    
+    tabela.innerHTML = '<tr><td colspan="4">Carregando...</td></tr>';
+    
     fetch('https://backjogo-production.up.railway.app/jogo')
-        .then(resp => resp.json())
+        .then(resp => {
+            if (!resp.ok) {
+                throw new Error(`Erro HTTP: ${resp.status}`);
+            }
+            return resp.json();
+        })
         .then((dados) => {
-            // Filtra produtos pela categoria e pelo nome (search)
-            const produtosFiltrados = dados.filter(produto => {
-                const matchCategoria = categoria === '' || produto.categoria.toLowerCase() === categoria;
-                const matchSearch = search === '' || produto.nomeJogo.toLowerCase().includes(search);
-                return matchCategoria && matchSearch;
-            });
-
-            produtosFiltrados.forEach(produto => {
-                const linha = document.createElement('tr');
-                linha.innerHTML = `
-                    <td>${produto.nomeJogo}</td>
-                    <td>${produto.descricao}</td>
-                    <td>R$ ${produto.preco}</td>
-                    <td><button onclick="mandarPagina(${produto.codJogo})">Comprar</button></td>
-                `;
-                tabela.appendChild(linha);
-            });
+            
+            if (produtosFiltrados.length === 0) {
+                tabela.innerHTML = '<tr><td colspan="4">Nenhum produto encontrado</td></tr>';
+            }
         })
         .catch((err) => {
-            console.log(err);
+            console.error('Erro na busca:', err);
+            tabela.innerHTML = `<tr><td colspan="4">Erro ao carregar produtos: ${err.message}</td></tr>`;
+        })
+        .finally(() => {
+
+            btnsearch.textContent = originalText;
+            btnsearch.disabled = false;
         });
 });
