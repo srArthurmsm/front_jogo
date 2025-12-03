@@ -43,7 +43,7 @@ const res = document.getElementById('res')
 
 
 function opGenero(){
-  const select = document.getElementById("genero")
+  const select = document.getElementById("codGenero")
   fetch(`https://backjogo-production.up.railway.app/genero`,{
     headers: {
         "Authorization": "Bearer " + token
