@@ -1,281 +1,248 @@
-/* =========================================
-   RESET / BASE
-========================================= */
+/* =======================
+   BASE
+======================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
 body {
     background: #1b2838;
     color: #c7d5e0;
+    min-height: 100vh;
 }
 
-/* =========================================
-   NAVBAR — ESTILO STEAM
-========================================= */
-
+/* =======================
+   HEADER
+======================== */
 header {
     background: #171a21;
-    box-shadow: 0 0 25px #000;
-    border-bottom: 1px solid #000;
-}
-
-.nav-container {
-    width: 90%;
-    margin: auto;
-    padding: 18px 0;
+    padding: 12px 20px;
     display: flex;
-    justify-content: space-between; 
     align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #10141a;
 }
 
-nav a {
-    color: #c7d5e0;
-    text-decoration: none;
-    margin-right: 25px;
-    font-size: 16px;
-}
-
-nav a:hover {
+header h1 {
+    font-size: 22px;
     color: #66c0f4;
+    letter-spacing: 1px;
+}
+
+.userButtons button, 
+.userButtons .userPage {
+    background: #2a475e;
+    color: #c7d5e0;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: 0.2s;
 }
 
 .userPage {
     display: flex;
     align-items: center;
     gap: 8px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
 }
 
-.userImagem {
-    width: 42px;
-    height: 42px;
+.userPage img {
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #4b6b85;
 }
 
-/* Botões padrão Steam */
-.steam-btn-blue {
-    background: #3d6e9c;
-    border: 1px solid #417aaf;
-    color: #fff;
-    padding: 9px 18px;
-    border-radius: 3px;
-    cursor: pointer;
+.userButtons button:hover,
+.userPage:hover {
+    background: #3c6b87;
 }
 
-.steam-btn-blue:hover {
-    background: #4a86b8;
-}
-
-/* =========================================
-     PÁGINA DO JOGO
-========================================= */
-
-main {
-    width: 90%;
-    margin: 35px auto;
-    animation: fadeIn .2s ease-in-out;
-}
-
-#game-page {
-    padding: 25px;
-    border-radius: 8px;
-    background: rgba(0,0,0,0.25);
-    box-shadow: 0 0 15px #000;
-}
-
-.game-header {
+/* =======================
+   JOGO — CAPA + INFO
+======================== */
+.container {
     display: flex;
+    width: 100%;
+    padding: 25px;
     gap: 25px;
 }
 
 #capa {
-    width: 290px;
+    width: 280px;
+    height: 380px;
+    object-fit: cover;
     border-radius: 6px;
-    box-shadow: 0 0 20px #000;
+    border: 2px solid #00000050;
 }
 
 .game-info {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
+    flex: 1;
+    background: #16202d;
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid #0f1a25;
 }
 
-#nome {
-    color: #66c0f4;
-    font-size: 32px;
+.game-info h2 {
+    font-size: 26px;
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+#preco {
+    background: #4c6b22;
+    padding: 8px 14px;
+    display: inline-block;
+    font-size: 20px;
     font-weight: bold;
+    border-radius: 4px;
+    margin-bottom: 20px;
 }
 
 #desc {
-    background: #16202d;
-    padding: 16px;
-    border-left: 4px solid #66c0f4;
+    margin-top: 10px;
+    line-height: 1.6;
+}
+
+/* =======================
+   BOTÕES DE AÇÃO
+======================== */
+#comprar, #carrinho {
+    background: #66c0f4;
+    border: none;
+    color: #0b1a25;
+    padding: 12px 20px;
     border-radius: 4px;
-    line-height: 1.5;
-}
-
-.game-price {
-    color: #a4d007;
     font-weight: bold;
-    font-size: 26px;
-}
-
-.game-buttons {
-    display: flex;
-    gap: 12px;
-}
-
-.steam-btn-green {
-    background: #5c7e10;
-    border: 1px solid #6ea21a;
-    color: #fff;
-    padding: 12px 22px;
-    border-radius: 3px;
     cursor: pointer;
+    transition: 0.2s;
+    margin-right: 10px;
 }
 
-.steam-btn-green:hover {
-    background: #76a21c;
+#comprar:hover, #carrinho:hover {
+    background: #8ed0ff;
 }
 
-.steam-btn-dark {
-    background: #2a475e;
-    border: 1px solid #35546b;
-    color: #fff;
-    padding: 12px 22px;
-    border-radius: 3px;
-    cursor: pointer;
+/* =======================
+   REVIEWS — FORM
+======================== */
+.review-form {
+    margin: 30px 25px;
+    background: #16212e;
+    padding: 20px;
+    border-radius: 6px;
 }
 
-.steam-btn-dark:hover {
-    background: #3b5f78;
-}
-
-/* =========================================
-   SEÇÃO DE REVIEWS
-========================================= */
-
-#review {
-    margin-top: 35px;
-    padding: 25px;
-    border-radius: 8px;
-    background: rgba(0,0,0,0.35);
-    box-shadow: 0 0 12px #000;
-}
-
-.section-title {
-    color: #66c0f4;
-    font-size: 26px;
-    margin-bottom: 18px;
-}
-
-.review-add {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 25px;
+.review-form h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
 }
 
 #perfil_review {
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #66c0f4;
+    margin-bottom: 10px;
 }
 
 #review_nota {
-    width: 300px;
-    padding: 12px;
-    background: #0f1924;
-    border: 1px solid #304a66;
-    border-radius: 3px;
-    color: #c7d5e0;
+    width: 100%;
+    height: 70px;
+    border-radius: 4px;
+    border: none;
+    padding: 10px;
+    background: #0f1a25;
+    color: #e5f1ff;
+    margin-top: 10px;
 }
 
-#review_nota:focus {
-    border-color: #66c0f4;
+#enviar {
+    margin-top: 10px;
+    background: #3c6d93;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
 }
 
-/* ============ CARDS DE REVIEW (GERADOS NO JS) ============ */
+#enviar:hover {
+    background: #548bb5;
+}
+
+/* =======================
+   REVIEWS — LISTA
+======================== */
+.reviews-area {
+    margin: 0 25px 40px 25px;
+}
 
 .review-card {
-    background: #1b1b1e;
-    border: 1px solid #333;
-    padding: 18px;
-    border-radius: 8px;
-    margin-bottom: 18px;
+    background: #1b2a3a;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    border: 1px solid #0f1a25;
 }
 
 .review-user {
     display: flex;
-    gap: 15px;
     align-items: center;
+    gap: 12px;
 }
 
 .review-avatar {
-    width: 55px;
-    height: 55px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #555;
 }
 
 .review-name {
-    color: #fff;
     font-size: 18px;
-    margin-bottom: 3px;
+    color: #66c0f4;
 }
 
 .review-date {
-    color: #9aa4aa;
-    font-size: 13px;
+    font-size: 12px;
+    opacity: 0.6;
 }
 
-.review-content p {
-    color: #ddd;
-    font-size: 16px;
-    line-height: 1.4;
+.review-content {
+    margin-top: 10px;
+    line-height: 1.6;
+    color: #d6e6f5;
 }
 
-/* Remove aparência de tabela */
-table,
-tbody,
-tr,
-td {
-    display: block;
-    padding: 0;
-    margin: 0;
-    border: none;
+/* =======================
+   RESPONSIVO
+======================== */
+@media (max-width: 800px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #capa {
+        width: 90%;
+        height: auto;
+    }
+
+    .game-info {
+        width: 100%;
+    }
 }
 
-/* =========================================
-   FOOTER
-========================================= */
-
-footer {
-    margin-top: 60px;
-    background: #171a21;
-    border-top: 1px solid #000;
-    padding: 20px;
-    text-align: center;
-    color: #7a8b9a;
-}
-
-/* =========================================
-   ANIMAÇÃO
-========================================= */
+/* ==========================================================
+   ANIMATION
+========================================================== */
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }

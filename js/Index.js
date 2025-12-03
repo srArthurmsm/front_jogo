@@ -28,7 +28,7 @@ try {
   userButton.appendChild(username)
   user.appendChild(userButton)
   userButton.addEventListener('click',(e)=>{
-      window.location.href = "./Perfil.html"
+      window.location.href = "./html/Perfil.html"
   })
   console.log('esta logado')
 
