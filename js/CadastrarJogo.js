@@ -51,7 +51,7 @@ function opGenero(){
   })
   .then(resp => resp.json())
   .then((dados)=>{
-    dados.forEach(genero => {
+    dados.array.forEach(genero => {
       const opcao = document.createElement('option')
       opcao.value = genero.codGenero;
       opcao.textContent = genero.nomeGenero;
