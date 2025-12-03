@@ -24,7 +24,7 @@ Loginbtn.addEventListener('click',(e)=>{
         senha: document.getElementById('senha').value
     }
     console.log(valores)
-    fetch(`https://backjogo-production.up.railway.app/login`,{
+    fetch(`https://backjogo-production.up.railway.app/auth/login`,{
         headers: {
             'Content-Type':'application/json'
         },
