@@ -1,233 +1,204 @@
-/* =======================
-   BASE / RESET
-======================= */
+/* ============================================
+   RESET
+============================================ */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 body {
     background: #1b2838;
     color: #c7d5e0;
+    min-height: 100vh;
 }
 
-/* =======================
-   NAVBAR STEAM
-======================= */
-
+/* ============================================
+   HEADER
+============================================ */
 header {
+    width: 100%;
     background: #171a21;
-    box-shadow: 0 0 18px #000;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.nav-container {
-    width: 90%;
-    margin: auto;
-    padding: 18px 0;
+header .logo {
+    font-size: 26px;
+    color: #66c0f4;
+    font-weight: bold;
+}
 
+header .userPage {
+    background: transparent;
+    border: none;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-}
-
-nav a {
-    color: #c7d5e0;
-    margin-right: 24px;
-    text-decoration: none;
-    font-size: 16px;
-}
-
-nav a:hover {
-    color: #66c0f4;
-}
-
-/* botões do usuário */
-
-.steam-btn-blue {
-    background: #3d6e9c;
-    border: 1px solid #417aaf;
-    color: #fff;
-    padding: 10px 18px;
-    border-radius: 2px;
+    gap: 10px;
     cursor: pointer;
+    color: #c7d5e0;
 }
 
-.steam-btn-blue:hover {
-    background: #4a86b8;
+header .userImagem {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #66c0f4;
 }
 
-/* =======================
-   ÁREA PRINCIPAL DO JOGO
-======================= */
-
-main {
-    width: 90%;
-    margin: 35px auto;
+header button:hover {
+    opacity: 0.7;
 }
 
-/* Cabeçalho do jogo */
-#game-page {
-    background: rgba(0,0,0,0.2);
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 0 15px #000;
+/* ============================================
+   GAME SECTION
+============================================ */
+#game-container {
+    width: 80%;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 40px;
 }
 
-.game-header {
-    display: flex;
-    gap: 25px;
-    align-items: flex-start;
-}
-
-/* capa grande semelhante à steam */
-#capa {
-    width: 290px;
+#game-container img {
+    width: 100%;
     border-radius: 6px;
-    box-shadow: 0 0 20px #000;
 }
 
-.game-info {
-    flex: 1;
+#game-info h1 {
+    font-size: 32px;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+#game-info #preco {
+    font-size: 26px;
+    margin: 15px 0;
+    color: #a1e3a1;
+}
+
+#game-info p {
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+/* ============================================
+   BUTTONS
+============================================ */
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#comprar {
+    background: #5c7e10;
+    color: white;
+}
+
+#carrinho {
+    background: #1b4f72;
+    color: white;
+}
+
+#comprar:hover,
+#carrinho:hover {
+    opacity: 0.85;
+}
+
+/* ============================================
+   REVIEW FORM
+============================================ */
+#review-form {
+    width: 80%;
+    margin: 40px auto 20px auto;
+    background: #2a475e;
+    padding: 25px;
+    border-radius: 6px;
+}
+
+#review-form h2 {
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+#review-form textarea {
+    width: 100%;
+    height: 120px;
+    background: #1b2838;
+    color: #c7d5e0;
+    border: 2px solid #3c5a72;
+    padding: 10px;
+    border-radius: 6px;
+    resize: none;
+}
+
+#review-form button {
+    margin-top: 15px;
+    background: #66c0f4;
+    color: #000;
+}
+
+/* ============================================
+   REVIEWS LIST
+============================================ */
+#reviews_tabela {
+    width: 80%;
+    margin: 20px auto 60px auto;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 20px;
 }
 
-#nome {
-    color: #66c0f4;
-    font-size: 32px;
-    font-weight: bold;
-}
-
-#desc {
-    background: #16202d;
-    padding: 18px;
-    border-left: 5px solid #66c0f4;
-    border-radius: 4px;
-}
-
-.game-price {
-    color: #a4d007;
-    font-size: 26px;
-    font-weight: bold;
-}
-
-.game-buttons {
-    display: flex;
-    gap: 12px;
-}
-
-/* Botões estilo steam */
-.steam-btn-green {
-    background: #5c7e10;
-    border: 1px solid #6ea21a;
-    color: #fff;
-    padding: 12px 22px;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.steam-btn-green:hover {
-    background: #6ea21a;
-}
-
-.steam-btn-dark {
+/* Review Card */
+.review-card {
     background: #2a475e;
-    border: 1px solid #35546b;
-    color: #fff;
-    padding: 12px 22px;
-    border-radius: 3px;
-    cursor: pointer;
+    padding: 20px;
+    border-radius: 6px;
+    border-left: 6px solid #66c0f4;
 }
 
-.steam-btn-dark:hover {
-    background: #35546b;
-}
-
-/* =======================
-   REVIEWS
-======================= */
-
-#review {
-    background: rgba(0,0,0,0.25);
-    padding: 25px;
-    border-radius: 8px;
-    margin-top: 25px;
-    box-shadow: 0 0 15px #000;
-}
-
-.section-title {
-    font-size: 26px;
-    color: #66c0f4;
-    margin-bottom: 18px;
-}
-
-.review-add {
+.review-user {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
-#perfil_review {
-    width: 60px;
-    height: 60px;
+.review-avatar {
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
-    background: #1b2838;
-    border: 2px solid #66c0f4;
     object-fit: cover;
+    border: 2px solid #66c0f4;
 }
 
-#review_nota {
-    background: #0f1924;
-    border: 1px solid #304a66;
-    color: #c7d5e0;
-    padding: 12px;
-    border-radius: 3px;
-    width: 300px;
+.review-name {
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: bold;
 }
 
-#review_nota:focus {
-    border-color: #66c0f4;
+.review-date {
+    font-size: 14px;
+    color: #9db4c8;
 }
 
-table {
-    width: 100%;
-    margin-top: 20px;
+.review-content {
+    margin-top: 15px;
+    font-size: 17px;
+    color: #d5e7f3;
+    line-height: 1.4;
 }
 
-tbody tr {
-    background: #0f1924;
-    border-left: 5px solid #304a66;
-    margin-bottom: 10px;
-    display: block;
-    padding: 15px;
-    border-radius: 5px;
-}
-
-tbody tr:hover {
-    background: #162435;
-}
-
-td {
-    display: block;
-    color: #d6e2f2;
-}
-
-/* =======================
-   FOOTER
-======================= */
-
-footer {
-    margin-top: 60px;
-    background: #171a21;
-    text-align: center;
-    padding: 20px;
-    color: #7a8b9a;
-    border-top: 2px solid #000;
-}
 
 main {
     animation: fadeIn 0.3s ease-in-out;
