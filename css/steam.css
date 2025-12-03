@@ -192,6 +192,33 @@ main {
     border-color: #66c0f4;
 }
 
+
+/* Container do botão do usuário */
+.userPage {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* Imagem do usuário */
+.userImagem {
+    width: 40px;            /* tamanho ideal */
+    height: 40px;
+    object-fit: cover;      /* evita distorção */
+    border-radius: 50%;     /* imagem redonda */
+    border: 2px solid #4b5563; /* estilo steam */
+}
+
+/* Nome do usuário */
+.userPage div {
+    font-size: 15px;
+    color: #e5e7eb;
+    font-weight: 500;
+}
 /* ==== cards reais steam-like ==== */
 
 .review-card {
