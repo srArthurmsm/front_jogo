@@ -14,7 +14,6 @@ const preco = document.getElementById('preco')
 const desc = document.getElementById('desc')
 const nome = document.getElementById('nome')
 const perfil_review = document.getElementById('perfil_review')
-const token = localStorage.getItem('token')
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
@@ -22,25 +21,29 @@ const tabela = document.getElementById('reviews_tabela')
 
 
 const user = document.getElementById('user')
-const payload = JSON.parse(atob(token.split('.')[1]))
-if(localStorage.getItem('token')){
-    console.log('esta logado')
-    user.innerHTML = ""
-    const userButton = document.createElement('button')
-    userButton.classList.add('userPage')
-    const imagem = document.createElement('img')
-    imagem.classList.add('userImagem')
-    imagem.src = `https://backjogo-production.up.railway.app{payload.imagem}`
-    const username = document.createElement('div')
-    username.innerHTML = payload.nome
-    userButton.appendChild(imagem)
-    userButton.appendChild(username)
-    user.appendChild(userButton)
-    userButton.addEventListener('click',(e)=>{
-        window.location.href = "./Perfil.html"
-    })
+try{
+  const token = localStorage.getItem('token')
+  const payload = JSON.parse(atob(token.split('.')[1]))
+  console.log('esta logado')
+  user.innerHTML = ""
+  const userButton = document.createElement('button')
+  userButton.classList.add('userPage')
+  const imagem = document.createElement('img')
+  imagem.classList.add('userImagem')
+  imagem.src = `https://backjogo-production.up.railway.app{payload.imagem}`
+  const username = document.createElement('div')
+  username.innerHTML = payload.nome
+  userButton.appendChild(imagem)
+  userButton.appendChild(username)
+  user.appendChild(userButton)
+  userButton.addEventListener('click',(e)=>{
+      window.location.href = "./Perfil.html"
+  })
 }
-
+catch{
+  console.log('nao esta logado')
+}
+    
 
 function getThings(){
     console.log("payload.imagem =", payload.imagem);
