@@ -90,22 +90,44 @@ btnsearch.addEventListener('click', (e) => {
     btnsearch.textContent = 'Buscando...';
     btnsearch.disabled = true;
     
-    const search = searchInput.value.toLowerCase().trim();
-    const categoria = categoriaSelect.value.toLowerCase();
+    const search = document.getElementById('search').value.toLowerCase();
+    const categoria = document.getElementById('categoria').value.toLowerCase();
+
+    // Supondo que 'tabela' é uma referência a um elemento table/tbody
+    const tabela = document.getElementById('tabela'); // Adicione esta linha
     
     tabela.innerHTML = '<tr><td colspan="4">Carregando...</td></tr>';
     
     fetch('https://backjogo-production.up.railway.app/jogo')
-        .then(resp => {
-            if (!resp.ok) {
-                throw new Error(`Erro HTTP: ${resp.status}`);
-            }
-            return resp.json();
-        })
+        .then(resp => resp.json())
         .then((dados) => {
+            // Limpar mensagem de carregamento
+            tabela.innerHTML = '';
             
+            // Filtragem dos produtos
+            const produtosFiltrados = dados.filter(produto => {
+                const matchCategoria = categoria === '' || 
+                                     produto.categoria.toLowerCase() === categoria;
+                const matchSearch = search === '' || 
+                                   produto.nomeJogo.toLowerCase().includes(search);
+                return matchCategoria && matchSearch;
+            });
+            
+            // Verificar se há resultados
             if (produtosFiltrados.length === 0) {
                 tabela.innerHTML = '<tr><td colspan="4">Nenhum produto encontrado</td></tr>';
+            } else {
+                // Renderizar os produtos filtrados
+                produtosFiltrados.forEach(produto => {
+                    const linha = document.createElement('tr');
+                    linha.innerHTML = `
+                        <td>${produto.nomeJogo}</td>
+                        <td>${produto.descricao}</td>
+                        <td>R$ ${produto.preco}</td>
+                        <td><button onclick="mandarPagina(${produto.codJogo})">Comprar</button></td>
+                    `;
+                    tabela.appendChild(linha);
+                });
             }
         })
         .catch((err) => {
@@ -113,7 +135,6 @@ btnsearch.addEventListener('click', (e) => {
             tabela.innerHTML = `<tr><td colspan="4">Erro ao carregar produtos: ${err.message}</td></tr>`;
         })
         .finally(() => {
-
             btnsearch.textContent = originalText;
             btnsearch.disabled = false;
         });
