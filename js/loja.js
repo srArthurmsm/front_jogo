@@ -82,7 +82,39 @@ criar.addEventListener('click',(e)=>{
 })
 
 
-const btnsearch = document.getElementById('btnsearch')
+const btnsearch = document.getElementById('btnsearch');
 
+btnsearch.addEventListener('click', (e) => {
+    e.preventDefault(); // previne envio de formulário se houver
 
-btnsearch.addEventListener('click')
+    const search = document.getElementById('search').value.toLowerCase();
+    const categoria = document.getElementById('categoria').value.toLowerCase();
+
+    // Limpa tabela antes de adicionar resultados
+    tabela.innerHTML = '';
+
+    fetch('https://backjogo-production.up.railway.app/jogo')
+        .then(resp => resp.json())
+        .then((dados) => {
+            // Filtra produtos pela categoria e pelo nome (search)
+            const produtosFiltrados = dados.filter(produto => {
+                const matchCategoria = categoria === '' || produto.categoria.toLowerCase() === categoria;
+                const matchSearch = search === '' || produto.nomeJogo.toLowerCase().includes(search);
+                return matchCategoria && matchSearch;
+            });
+
+            produtosFiltrados.forEach(produto => {
+                const linha = document.createElement('tr');
+                linha.innerHTML = `
+                    <td>${produto.nomeJogo}</td>
+                    <td>${produto.descricao}</td>
+                    <td>R$ ${produto.preco}</td>
+                    <td><button onclick="mandarPagina(${produto.codJogo})">Comprar</button></td>
+                `;
+                tabela.appendChild(linha);
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
