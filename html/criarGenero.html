@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/criarGenero.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../index.html">Home</a>
+            <a href="./loja.html">Loja</a>
+            <a href="./carrinho.html">Carrinho</a>
+            <div id="user">
+                <button id="cad">Cadastrar</button>
+                <button id="Login">Login</button>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div id="box">
+            <section>
+                <h2>Cadastrar</h2><br>
+              
+                <form id="formCadastro" action="https://backjogo-production.up.railway.app/genero" method="POST" enctype="multipart/form-data">
+                  <label for="nomeGenero">Nome do Genero:</label><br>
+                  <input type="text" id="nomeGenero" name="nomeGenero" required><br>
+
+                  <button type="submit" id="Cadastrar">Cadastrar</button>
+                </form>
+              
+                <div id="res"></div>
+              </section>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>

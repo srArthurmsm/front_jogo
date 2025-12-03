@@ -21,16 +21,17 @@ const tabela = document.getElementById('reviews_tabela')
 
 
 const user = document.getElementById('user')
-try{
-  const token = localStorage.getItem('token')
-  const payload = JSON.parse(atob(token.split('.')[1]))
-  console.log('esta logado')
+const token = localStorage.getItem('token')
+let payload = null
+
+try {
+  payload = JSON.parse(atob(token.split('.')[1]))
   user.innerHTML = ""
   const userButton = document.createElement('button')
   userButton.classList.add('userPage')
   const imagem = document.createElement('img')
   imagem.classList.add('userImagem')
-  imagem.src = `https://backjogo-production.up.railway.app{payload.imagem}`
+  imagem.src = `https://backjogo-production.up.railway.app${payload.imagem}`
   const username = document.createElement('div')
   username.innerHTML = payload.nome
   userButton.appendChild(imagem)
@@ -39,11 +40,11 @@ try{
   userButton.addEventListener('click',(e)=>{
       window.location.href = "./Perfil.html"
   })
+  console.log('esta logado')
+
+} catch(e) {
+  console.log('nao esta logado', e)
 }
-catch{
-  console.log('nao esta logado')
-}
-    
 
 function getThings(){
     console.log("payload.imagem =", payload.imagem);
@@ -55,7 +56,7 @@ function getThings(){
         precoCompra = dados.preco
         desc.innerHTML = dados.descricao
         nome.innerHTML = dados.nomeJogo
-        imagem.src = `https://backjogo-production.up.railway.app{dados.capa}`
+        imagem.src = `https://backjogo-production.up.railway.app${dados.capa}`
     })
     .catch((err)=>{
         console.log(err)
@@ -76,7 +77,7 @@ function getThings(){
     
             card.innerHTML = `
                 <div class="review-user">
-                    <img class="review-avatar" src="https://backjogo-production.up.railway.app{review.cliente.imagem}">
+                    <img class="review-avatar" src="https://backjogo-production.up.railway.app${review.cliente.imagem}">
                     <div>
                         <h3 class="review-name">${review.cliente.nome}</h3>
                         <p class="review-date">${new Date(review.createdAt).toLocaleDateString()}</p>

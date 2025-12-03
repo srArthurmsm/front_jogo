@@ -3,7 +3,6 @@ const Login = document.getElementById('Login')
 const logOut = document.getElementById('logOut')
 const tabela = document.getElementById('biblioteca_table')
 
-
 logOut.addEventListener('click',(e)=>{
     localStorage.removeItem('token')
     window.location.href = "../index.html"
@@ -18,16 +17,18 @@ Login.addEventListener('click',(e)=>{
 })
 
 const user = document.getElementById('user')
-try{
-  const token = localStorage.getItem('token')
-  const payload = JSON.parse(atob(token.split('.')[1]))
-  console.log('esta logado')
+
+const token = localStorage.getItem('token')
+let payload = null
+
+try {
+  payload = JSON.parse(atob(token.split('.')[1]))
   user.innerHTML = ""
   const userButton = document.createElement('button')
   userButton.classList.add('userPage')
   const imagem = document.createElement('img')
   imagem.classList.add('userImagem')
-  imagem.src = `https://backjogo-production.up.railway.app{payload.imagem}`
+  imagem.src = `https://backjogo-production.up.railway.app${payload.imagem}`
   const username = document.createElement('div')
   username.innerHTML = payload.nome
   userButton.appendChild(imagem)
@@ -36,17 +37,20 @@ try{
   userButton.addEventListener('click',(e)=>{
       window.location.href = "./Perfil.html"
   })
-}
-catch{
-  console.log('nao esta logado')
-}
-    
+  console.log('esta logado')
 
-function setThingUp(){
+} catch(e) {
+  console.log('nao esta logado', e)
+}
+
+
+function setThingUp() {
     const imagem = document.getElementById('UserImagemPrincipal')
-    imagem.src = `https://backjogo-production.up.railway.app{payload.imagem}`
+    imagem.src = `https://backjogo-production.up.railway.app${payload.imagem}`
+
     const userName = document.getElementById('userName')
     userName.innerHTML = payload.nome
+
     const userDate = document.getElementById('userDate')
     userDate.innerHTML = new Date(payload.DataNascimento).toLocaleDateString()
 
@@ -57,17 +61,16 @@ function setThingUp(){
     })
     .then(resp => resp.json())
     .then((dados)=>{
-        console.log(dados)
-        console.log(payload.codCliente)
-        dados.filter(compra => compra.compra.idCliente == payload.codCliente).forEach((compra) => {
+        dados
+          .filter(c => c.compra.idCliente == payload.codCliente)
+          .forEach((compra) => {
 
             const card = document.createElement("div")
             card.classList.add("biblioteca-card")
 
-            console.log(compra.jogo.capa)
             card.innerHTML = `
                 <div class="biblioteca-user">
-                    <img class="review-avatar" src="https://backjogo-production.up.railway.app{compra.jogo.capa}">
+                    <img class="review-avatar" src="https://backjogo-production.up.railway.app${compra.jogo.capa}">
                 </div>
             `
             tabela.appendChild(card)

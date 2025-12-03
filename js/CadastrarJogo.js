@@ -11,16 +11,17 @@ Login.addEventListener('click',(e)=>{
     window.location.href = "./Login.html"
 })
 const user = document.getElementById('user')
-try{
-  const token = localStorage.getItem('token')
-  const payload = JSON.parse(atob(token.split('.')[1]))
-  console.log('esta logado')
+const token = localStorage.getItem('token')
+let payload = null
+
+try {
+  payload = JSON.parse(atob(token.split('.')[1]))
   user.innerHTML = ""
   const userButton = document.createElement('button')
   userButton.classList.add('userPage')
   const imagem = document.createElement('img')
   imagem.classList.add('userImagem')
-  imagem.src = `https://backjogo-production.up.railway.app{payload.imagem}`
+  imagem.src = `https://backjogo-production.up.railway.app${payload.imagem}`
   const username = document.createElement('div')
   username.innerHTML = payload.nome
   userButton.appendChild(imagem)
@@ -29,9 +30,10 @@ try{
   userButton.addEventListener('click',(e)=>{
       window.location.href = "./Perfil.html"
   })
-}
-catch{
-  console.log('nao esta logado')
+  console.log('esta logado')
+
+} catch(e) {
+  console.log('nao esta logado', e)
 }
     
 
@@ -40,7 +42,7 @@ const formCadastro = document.getElementById('formCadastro')
 const res = document.getElementById('res')
 
 
-function addGenero(){
+function opGenero(){
   const select = document.getElementById("genero")
   fetch(`https://backjogo-production.up.railway.app/genero`,{
     headers: {
@@ -49,8 +51,10 @@ function addGenero(){
   })
   .then(resp => resp.json())
   .then((dados)=>{
-    dados.array.forEach(genero => {
-      const opcao = `<option value="${genero.codGenero}">${genero.nomeGenero}</option>`
+    dados.forEach(genero => {
+      const opcao = document.createElement('option')
+      opcao.value = genero.codGenero;
+      opcao.textContent = genero.nomeGenero;
       select.appendChild(opcao)
     });
   })
@@ -59,7 +63,7 @@ function addGenero(){
   })
 }
 
-window.onload = addGenero
+window.onload = opGenero
 
 formCadastro.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -86,3 +90,10 @@ formCadastro.addEventListener('submit', (e) => {
         res.innerHTML = 'Erro ao cadastrar o usuário.'
       })
   })
+
+const addGenero = document.getElementById('addGenero')
+
+addGenero.addEventListener('click',(e)=>{
+    e.preventDefault()
+    window.location.href = "./criarGenero.html"
+})
