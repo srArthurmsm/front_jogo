@@ -99,6 +99,9 @@ Comprar.addEventListener('click', (e)=>{
     })
     .then((dados)=>{
         console.log(dados)
+        alert('Compra realizada com sucesso!')
+        localStorage.removeItem('produtos')
+        listar()
     })
     .catch((err)=>{
         console.log(err)
