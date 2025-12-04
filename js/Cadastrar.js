@@ -59,6 +59,7 @@ formCadastro.addEventListener('submit', (e) => {
     .then(resp => resp.json())
     .then((dados)=>{
       res.innerHTML = dados.message
+      window.location.href = "../html/Login.html"
     })
     .catch((dados)=>{
       console.error(dados)
