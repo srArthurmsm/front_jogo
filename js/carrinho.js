@@ -66,7 +66,7 @@ function listar(){
         tabela.appendChild(linha)
     })
     const linha = document.createElement('tr')
-    linha.innerHTML = `<td>Preço Total</td> <td>${precoTotal}</td>`
+    linha.innerHTML = `<td>Preço Total</td> <td>${precoTotal.toFixed(2)}</td>`
     tabela.appendChild(linha)
 }
 

@@ -53,7 +53,7 @@ function getThings(){
     .then((dados)=>{
         console.log(dados.descricao, dados.nomeJogo )
         preco.innerHTML = dados.preco + '$'
-        precoCompra = dados.preco
+        precoCompra = dados.preco.toFixed(2)
         desc.innerHTML = dados.descricao
         nome.innerHTML = dados.nomeJogo
         imagem.src = `https://backjogo-production.up.railway.app${dados.capa}`
