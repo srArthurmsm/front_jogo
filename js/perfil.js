@@ -71,6 +71,7 @@ function setThingUp() {
             card.innerHTML = `
                 <div class="biblioteca-user">
                     <img class="review-avatar" src="https://backjogo-production.up.railway.app${compra.jogo.capa}">
+                    <p>${compra.jogo.nomeJogo}</p>
                 </div>
             `
             tabela.appendChild(card)
