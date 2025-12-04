@@ -502,6 +502,84 @@ main {
     border-top: 1px solid #2a475e;
 }
 
+.tabela-biblioteca {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    padding: 16px;
+    box-sizing: border-box;
+    align-items: start;
+  }
+  
+  /* Card individual */
+  .biblioteca-card {
+    background: linear-gradient(180deg, #ffffff 0%, #fbfbfb 100%);
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(8, 15, 30, 0.06);
+    border: 1px solid rgba(15, 15, 15, 0.04);
+    padding: 12px;
+    transition: transform 200ms ease, box-shadow 200ms ease;
+    cursor: default;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  /* efeito hover (desktop) */
+  .biblioteca-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(8, 15, 30, 0.12);
+  }
+  
+  /* Área do usuário/jogo dentro do card */
+  .biblioteca-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+  }
+  
+  /* Imagem/capa (avatar) */
+  .review-avatar {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #e6e6e6, #f7f7f7);
+    box-shadow: 0 4px 10px rgba(10, 10, 10, 0.04);
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+  
+  /* Nome do jogo */
+  .biblioteca-user p {
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.2;
+    font-weight: 600;
+    color: #111827; /* tom escuro para legibilidade */
+    word-break: break-word;
+  }
+  
+  /* Pequena descrição (se quiser adicionar depois) */
+  .biblioteca-card .meta {
+    display: block;
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-top: 6px;
+  }
+  
+  /* Estado vazio (quando não houver itens) */
+  .biblioteca-vazio {
+    text-align: center;
+    color: #6b7280;
+    padding: 28px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px dashed rgba(0,0,0,0.06);
+  }
+
 /* =======================
    PERFIL — ESTILIZAÇÃO EXTRA
 ======================= */
