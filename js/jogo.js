@@ -178,7 +178,7 @@ function adicionarProduto() {
 
             localStorage.setItem('produtos', JSON.stringify(produtos));
 
-            alert(`${qtde}x ${nome} adicionado(s) ao carrinho!`);
+            alert(`${nome} adicionado ao carrinho!`);
         })
         .catch((err) => {
             console.log(err);
