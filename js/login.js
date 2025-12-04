@@ -35,6 +35,7 @@ Loginbtn.addEventListener('click',(e)=>{
     .then((dados)=>{
         res.innerHTML = dados.message
         localStorage.setItem('token', dados.token)
+        window.location.href = "../index.html"
     })
     .catch((err)=>{
         res.innerHTML = err.message
