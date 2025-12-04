@@ -486,7 +486,7 @@ main {
 /* Células da tabela */
 #biblioteca_table td {
     padding: 15px;
-    color: #c7d5e0;
+    color: #0044ff;
     font-size: 18px;
     font-weight: bold;
     display: block;
@@ -558,7 +558,7 @@ main {
     font-size: 0.98rem;
     line-height: 1.2;
     font-weight: 600;
-    color: #111827; /* tom escuro para legibilidade */
+    color: #000000; /* tom escuro para legibilidade */
     word-break: break-word;
   }
   
